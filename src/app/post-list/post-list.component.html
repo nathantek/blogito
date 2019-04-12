@@ -1,0 +1,34 @@
+<div [ngClass]="{'card-body': true}">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Les Posts :</h2>
+            <div class="list-group">
+                <h3 [ngClass]="{'list-group-item': true,
+                                'list-group-item-success': post.like > post.dislike, 
+                                'list-group-item-danger': post.like < post.dislike}"
+                    *ngFor="let post of posts; let i = index">
+                    <h4 class="pull-right"> post crée à : {{ post.date | date: 'short' }} </h4>
+                    <h2 class="list-group-item-heading">
+                        {{ post.title }}
+                    </h2>
+                    <h4 class="list-group-item-text">{{ post.content }}</h4>
+                    <button class="btn btn-success" (click)="onLike(post)">
+                        Love it !
+                        <span class="badge badge-pill badge-light">
+                            {{ post.like }}
+                        </span>
+                    </button>
+                    <button class="btn btn-danger ml-2" (click)="onDislike(post)">
+                        Don't love it !
+                        <span class="badge badge-pill badge-light">
+                            {{ post.dislike }}
+                        </span>
+                    </button>
+                    <button class="btn btn-default pull-right" (click)="onDeletePost(post)">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
